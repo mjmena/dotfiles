@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
 
 {
-  networking.hostName = "tower"; # Define your hostname.
+  networking.hostName = "box"; # Define your hostname.  
 }

@@ -106,7 +106,6 @@ environment.variables.EDITOR =  "nvim";
             ]) ++ (with pkgs.gnome; [
               cheese # webcam tool
               gnome-music
-              gedit # text editor
               epiphany # web browser
               geary # email reader
               gnome-characters

@@ -27,11 +27,10 @@
       favorite-apps = [
         "firefox.desktop"
         "Alacritty.desktop"
-        "spotify.desktop"
         "org.gnome.Nautilus.desktop"
       ];
     };
-    "org/gnome/desktop/wm/prefernces".button-layout = "maximize, close";
+    "org/gnome/desktop/wm/prefereneces".button-layout = "maximize, close";
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
@@ -39,6 +38,16 @@
     "org/gnome/desktop/wm/preferences" = {
       workspace-names = [ "Main" ];
     };
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "alacritty";
+        command = "alacritty";
+        binding = "<Super>T";
+      };
   };
   # basic configuration of git, please change to your own
   programs.git = {
@@ -66,23 +75,19 @@
     };
   };
 
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
-  programs.alacritty = {
+programs.alacritty = {
     enable = true;
-    # custom settings
     settings = {
-      env.TERM = "xterm-256color";
-      font = {
-        size = 12;
-        draw_bold_text_with_bright_colors = true;
+      shell = "/run/current-system/sw/bin/fish";
+      window = {
+        opacity = 0.9;
       };
-      scrolling.multiplier = 5;
       selection.save_to_clipboard = true;
     };
-  };
+};
 
- home.stateVersion = "23.11";
+  home.stateVersion = "23.11";
 
-  # Let home Manager install and manage itself.
+# Let home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
