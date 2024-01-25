@@ -51,22 +51,33 @@
       "box" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
-          # Import the configuration.nix here, so that the
-          # old configuration file can still take effect.
-          # Note: configuration.nix itself is also a Nixpkgs Module,
           ./base.nix
           ./box/hardware-configuration.nix
 	  home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-
             home-manager.users.marty = import ./home.nix;
-
             # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
           }
                 ];
       };
+
+      "tower" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./base.nix
+          ./tower/hardware-configuration.nix
+	  home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.marty = import ./home.nix;
+            # Optionally, use home-manager.extraSpecialArgs to pass arguments to home.nix
+          }
+                ];
     };
+
   };
+};
 }

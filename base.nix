@@ -7,7 +7,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-    ./gnome/configuration.nix
     ];
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -43,12 +42,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
 
   # Configure keymap in X11
   services.xserver = {
@@ -106,7 +99,8 @@
   environment.systemPackages = with pkgs; [
 discord
 fish
-  ];
+ spotify
+ ];
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -120,6 +114,27 @@ programs.neovim = {
 
 environment.variables.VISUAL = "nvim";
 environment.variables.EDITOR =  "nvim";
- system.stateVersion = "23.11"; # Did you read the comment?
+ services.xserver.enable = true;
+            services.xserver.displayManager.gdm.enable = true;
+            services.xserver.desktopManager.gnome.enable = true;
+            environment.gnome.excludePackages = (with pkgs; [
+              gnome-photos
+              gnome-tour
+            ]) ++ (with pkgs.gnome; [
+              cheese # webcam tool
+              gnome-music
+              gedit # text editor
+              epiphany # web browser
+              geary # email reader
+              gnome-characters
+              tali # poker game
+              iagno # go game
+              hitori # sudoku game
+              yelp # Help view
+              gnome-contacts
+              gnome-initial-setup
+            ]);
+            programs.dconf.enable = true;
+	    system.stateVersion = "23.11"; # Did you read the comment?
 
 }
