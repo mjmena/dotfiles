@@ -75,24 +75,20 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  fonts.packages = with pkgs; [ fira-code ];
-  
+  fonts.packages = with pkgs; [
+  (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+];
+
   #List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 discord
-fish
  spotify
  ];
 programs.steam = {
   enable = true;
   remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
   dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-};
-programs.neovim = {
-  enable = true;
-  viAlias = true;
-  vimAlias = true;
 };
 
 environment.variables.VISUAL = "nvim";

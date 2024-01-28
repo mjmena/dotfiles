@@ -6,21 +6,21 @@
 # and `outputs` function will return all the build results of the flake.
 # Each item in `inputs` will be passed as a parameter to
 # the `outputs` function after being pulled and built.
-  inputs = {
+inputs = {
 # There are many ways to reference flake inputs.
 # The most widely used is `github:owner/name/reference`,
 # which represents the GitHub repository URL + branch/commit-id/tag.
 
 # Official NixOS package source, using nixos-23.11 branch here
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+nixpkgs.url = "nixpkgs/nixos-unstable";
 # home-manager, used for managing user configuration
-    home-manager = {
-      url = "github:nix-community/home-manager";
+home-manager = {
+  url = "github:nix-community/home-manager";
 # The `follows` keyword in inputs is used for inheritance.
 # Here, `inputs.nixpkgs` of home-manager is kept consistent with
 # the `inputs.nixpkgs` of the current flake,
 # to avoid problems caused by different versions of nixpkgs.
-      inputs.nixpkgs.follows = "nixpkgs";
+inputs.nixpkgs.follows = "nixpkgs";
     };
 
   };
@@ -35,8 +35,8 @@
 # 
 # The `@` syntax here is used to alias the attribute set of the
 # inputs's parameter, making it convenient to use inside the function.
-  outputs = { self, nixpkgs, home-manager, ... }@inputs: {
-    nixosConfigurations = {
+outputs = { self, nixpkgs, home-manager, ... }@inputs: {
+  nixosConfigurations = {
 # By default, NixOS will try to refer the nixosConfiguration with
 # its hostname, so the system named `nixos-test` will use this one.
 # However, the configuration name can also be specified using:
@@ -48,35 +48,35 @@
 # Run the following command in the flake's directory to
 # deploy this configuration on any NixOS system:
 #   sudo nixos-rebuild switch --flake .#nixos-test
-      "box" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./base.nix
-            ./box/configuration.nix
-	          ./box/hardware-configuration.nix
-	          home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marty = import ./home.nix;
-            }
-        ];
-      };
+"box" = nixpkgs.lib.nixosSystem {
+  system = "x86_64-linux";
+  modules = [
+    ./base.nix
+    ./box/configuration.nix
+    ./box/hardware-configuration.nix
+    home-manager.nixosModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.users.marty = import ./home.nix;
+    }
+  ];
+};
 
-      "tower" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./base.nix
-	          ./tower/configuration.nix
-            ./tower/hardware-configuration.nix
-	          home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marty = import ./home.nix;
-            }
-        ];
-      };
+"tower" = nixpkgs.lib.nixosSystem {
+system = "x86_64-linux";
+modules = [
+./base.nix
+./tower/configuration.nix
+./tower/hardware-configuration.nix
+home-manager.nixosModules.home-manager
+{
+home-manager.useGlobalPkgs = true;
+home-manager.useUserPackages = true;
+home-manager.users.marty = import ./home.nix;
+}
+];
+};
 
     };
   };
