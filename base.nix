@@ -76,43 +76,47 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   fonts.packages = with pkgs; [
-  (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
-];
+    (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+  ];
 
   #List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-discord
- spotify
- ];
-programs.steam = {
-  enable = true;
-  remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-  dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-};
+    discord
+    spotify
+  ];
+  
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+  };
 
-environment.variables.VISUAL = "nvim";
-environment.variables.EDITOR =  "nvim";
- services.xserver.enable = true;
-            services.xserver.displayManager.gdm.enable = true;
-            services.xserver.desktopManager.gnome.enable = true;
-            environment.gnome.excludePackages = (with pkgs; [
-              gnome-photos
-              gnome-tour
-            ]) ++ (with pkgs.gnome; [
-              cheese # webcam tool
-              gnome-music
-              epiphany # web browser
-              geary # email reader
-              gnome-characters
-              tali # poker game
-              iagno # go game
-              hitori # sudoku game
-              yelp # Help view
-              gnome-contacts
-              gnome-initial-setup
-            ]);
-    programs.dconf.enable = true;
-    system.stateVersion = "23.11"; # Did you read the comment?
+  environment.variables.VISUAL = "nvim";
+  environment.variables.EDITOR =  "nvim";
+ 
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
 
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+  ]) ++ (with pkgs.gnome; [
+    cheese # webcam tool
+    gnome-music
+    epiphany # web browser
+    geary # email reader
+    gnome-characters
+    tali # poker game
+    iagno # go game
+    hitori # sudoku game
+    yelp # Help view
+    gnome-contacts
+    gnome-initial-setup
+  ]);
+
+  programs.dconf.enable = true;
+
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

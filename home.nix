@@ -15,13 +15,13 @@
         "org.gnome.Nautilus.desktop"
       ];
     };
-    "org/gnome/desktop/wm/preferences".button-layout = "maximize,close";
+    "org/gnome/desktop/wm/preferences" ={
+      button-layout = ":maximize,close";
+      num-workspaces = 1;
+    };
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
       enable-hot-corners = false;
-    };
-    "org/gnome/desktop/wm/preferences" = {
-      num-workspaces = 4.0;
     };
     "org/gnome/settings-daemon/plugins/media-keys" = {
       custom-keybindings = [
