@@ -57,7 +57,12 @@
     enable = true;
     userName = "mjmena";
     userEmail = "martinjxm@gmail.com";
-  };
+    extraConfig = {
+      core ={
+        editor = "hx";
+        };
+      };
+    };
 
   nushell = { 
     enable = true;
