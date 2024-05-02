@@ -93,6 +93,21 @@
       };
     };
   };
+  helix = {
+    enable = true;
+    settings = {
+      editor = {
+        line-number = "relative";
+        lsp.display-messages = true;
+        lsp.display-inlay-hints = true; 
+      };
+    };
+    languages = {
+      language-server.rust-analyzer.config.check = {
+        command = "clippy";
+      };
+    };
+  };
 };
 
 home.stateVersion = "23.11";
