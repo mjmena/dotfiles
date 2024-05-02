@@ -84,6 +84,10 @@
   environment.systemPackages = with pkgs; [
     discord
     spotify
+    helix
+    libreoffice-qt
+    hunspell
+    hunspellDicts.en-us
   ];
   
   programs.steam = {
@@ -92,8 +96,8 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  environment.variables.VISUAL = "nvim";
-  environment.variables.EDITOR =  "nvim";
+  environment.variables.VISUAL = "hx";
+  environment.variables.EDITOR =  "hx";
  
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;

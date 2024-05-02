@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./nvim
   ];
   home.username = "marty";
   home.homeDirectory = "/home/marty";
@@ -16,7 +15,7 @@
       ];
     };
     "org/gnome/desktop/wm/preferences" ={
-      button-layout = ":maximize,close";
+      button-layout = ":minimize,close";
       num-workspaces = 1;
     };
     "org/gnome/desktop/interface" = {
