@@ -89,8 +89,6 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en-us
-    nil
-    nixpkgs-fmt
   ];
 
   programs.steam = {
