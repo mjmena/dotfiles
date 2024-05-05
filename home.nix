@@ -53,17 +53,6 @@
       };
     };
 
-    git = {
-      enable = true;
-      userName = "mjmena";
-      userEmail = "martinjxm@gmail.com";
-      extraConfig = {
-        core = {
-          editor = "hx";
-        };
-      };
-    };
-
     nushell = {
       enable = true;
       # The config.nu can be anywhere you want if you like to edit your Nushell with Nu

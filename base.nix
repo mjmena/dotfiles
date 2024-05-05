@@ -97,6 +97,20 @@
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    config = {
+      user = {
+        name = "mjmena";
+        email = "martinjxm@gmail.com";
+      };
+      core = {
+        editor = "hx";
+      };
+      credential.helper = "libsecret";
+    };
+  };
   environment.variables.VISUAL = "hx";
   environment.variables.EDITOR = "hx";
 
