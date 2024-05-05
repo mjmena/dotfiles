@@ -2,10 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports = [];
+  imports = [ ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -89,8 +89,10 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en-us
+    nil
+    nixpkgs-fmt
   ];
-  
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -98,8 +100,8 @@
   };
 
   environment.variables.VISUAL = "hx";
-  environment.variables.EDITOR =  "hx";
- 
+  environment.variables.EDITOR = "hx";
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
