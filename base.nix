@@ -5,7 +5,7 @@
 { pkgs, ... }:
 
 {
-  imports = [ ];
+  imports = [ modules/firefox.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -60,9 +60,6 @@
     isNormalUser = true;
     description = "marty";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      firefox
-    ];
   };
 
   # Enable automatic login for the user.

@@ -12,6 +12,11 @@
         line-number = "relative";
         lsp.display-messages = true;
         lsp.display-inlay-hints = true;
+        cursor-shape = {
+          normal = "bar";
+          insert = "underline";
+          select = "block";
+        };
       };
     };
     languages = {
