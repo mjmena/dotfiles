@@ -86,6 +86,8 @@
     libreoffice-qt
     hunspell
     hunspellDicts.en-us
+    anki-bin
+    mpv
   ];
 
   programs.steam = {
