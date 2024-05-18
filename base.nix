@@ -34,7 +34,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   # Configure keymap in X11
   services.xserver = {
     layout = "us";
@@ -72,6 +71,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
   ];

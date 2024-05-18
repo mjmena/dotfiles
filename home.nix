@@ -1,11 +1,55 @@
 { ... }:
-
 {
   imports = [
     ./home/helix.nix
   ];
   home.username = "marty";
   home.homeDirectory = "/home/marty";
+
+  programs = {
+    alacritty = {
+      enable = true;
+      settings = {
+        shell = "/etc/profiles/per-user/marty/bin/nu";
+        font = {
+          normal.family = "JetBrains Mono Nerd Font Mono";
+          normal.style = "Regular";
+        };
+        window = {
+          opacity = 0.9;
+        };
+        selection.save_to_clipboard = true;
+      };
+    };
+
+    nushell = {
+      enable = true;
+      configFile.source = ./home/config.nu;
+      shellAliases = {
+        vi = "hx";
+        vim = "hx";
+        nano = "hx";
+        cd = "z";
+      };
+    };
+
+    zoxide = {
+      enable = true;
+      enableNushellIntegration = true;
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = true;
+        character = {
+          success_symbol = "[➜](bold green)";
+          error_symbol = "[➜](bold red)";
+        };
+      };
+    };
+
+  };
 
   dconf.settings = {
     "org/gnome/shell" = {
@@ -36,55 +80,6 @@
   };
   # Packages that should be installed to the user profile.
   # home.packages = with pkgs; [];
-
-  programs = {
-    alacritty = {
-      enable = true;
-      settings = {
-        shell = "/etc/profiles/per-user/marty/bin/nu";
-        font = {
-          normal.family = "JetBrains Mono Nerd Font Mono";
-          normal.style = "Regular";
-        };
-        window = {
-          opacity = 0.9;
-        };
-        selection.save_to_clipboard = true;
-      };
-    };
-
-    nushell = {
-      enable = true;
-      # The config.nu can be anywhere you want if you like to edit your Nushell with Nu
-      #configFile.source = ./.../config.nu;
-      # for editing directly to config.nu 
-      extraConfig = ''
-        $env.config = {
-         show_banner: false,
-         completions: {
-         case_sensitive: false # case-sensitive completions
-         quick: true    # set to false to prevent auto-selecting completions
-         partial: true    # set to false to prevent partial filling of the prompt
-         algorithm: "fuzzy"    # prefix or fuzzy
-         }
-        } 
-      '';
-      shellAliases = { };
-    };
-
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = true;
-        character = {
-          success_symbol = "[➜](bold green)";
-          error_symbol = "[➜](bold red)";
-        };
-      };
-    };
-
-  };
-
   home.stateVersion = "23.11";
 
   # Let home Manager install and manage itself.
