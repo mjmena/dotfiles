@@ -83,9 +83,6 @@
     spotify
     helix
     godot_4
-    libreoffice-qt
-    hunspell
-    hunspellDicts.en-us
     anki-bin
     mpv
   ];
