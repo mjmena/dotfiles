@@ -85,6 +85,7 @@
     godot_4
     anki-bin
     mpv
+    zellij
   ];
 
   programs.steam = {
