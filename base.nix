@@ -18,6 +18,10 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 8080 ];
+  };
 
   # Set your time zone.
   time.timeZone = "America/New_York";
