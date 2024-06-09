@@ -5,7 +5,10 @@
 { pkgs, ... }:
 
 {
-  imports = [ modules/firefox.nix ];
+  imports = [
+    modules/firefox.nix
+    modules/zellij.nix
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -85,7 +88,6 @@
     godot_4
     anki-bin
     mpv
-    zellij
   ];
 
   programs.steam = {
