@@ -17,6 +17,7 @@
         };
         window = {
           opacity = 0.9;
+          startup_mode = "Fullscreen";
         };
         selection.save_to_clipboard = true;
       };
