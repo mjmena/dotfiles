@@ -2,6 +2,10 @@
 
 {
   networking.hostName = "tower"; # Define your hostname.
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 8080 ];
+  };
 
   nixpkgs.config.nvidia.acceptLicense = true;
   services.xserver.videoDrivers = [ "intel" "nvidia" ];
