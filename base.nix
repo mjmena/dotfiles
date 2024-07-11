@@ -94,6 +94,7 @@
     godot_4
     anki-bin
     mpv
+    gnome.dconf-editor
   ];
 
   programs.steam = {

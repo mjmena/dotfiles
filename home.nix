@@ -61,8 +61,14 @@
       ];
     };
     "org/gnome/desktop/wm/preferences" = {
-      button-layout = ":minimize,close";
+      button-layout = ":minimize,maximize,close";
       num-workspaces = 1;
+    };
+    "org/gnome/desktop/wm/keybindings" = {
+      switch-applications = [ ];
+      switch-applications-backward = [ ];
+      switch-windows = [ "<Super>Tab" "<Alt>Tab" ];
+      switch-windows-backward = [ "<Shift><Super>Tab" "<Shift><Alt>Tab" ];
     };
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
