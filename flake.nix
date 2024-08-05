@@ -57,6 +57,7 @@
       nixosConfigurations = {
         box = shareConfig "box";
         tower = shareConfig "tower";
+	hephaestus = shareConfig "hephaestus";
       };
     };
 }

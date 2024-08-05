@@ -67,7 +67,7 @@
   users.users.marty = {
     isNormalUser = true;
     description = "marty";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = ["root" "networkmanager" "wheel" ];
   };
 
   # Enable automatic login for the user.
@@ -91,17 +91,7 @@
     discord
     spotify
     helix
-    godot_4
-    anki-bin
-    mpv
-    gnome.dconf-editor
   ];
-
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
 
   programs.git = {
     enable = true;
