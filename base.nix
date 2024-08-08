@@ -15,8 +15,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.consoleLogLevel = 0;
-  boot.kernelParams = [ "quiet" "udev.log_level=3" ];
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -67,16 +65,8 @@
   users.users.marty = {
     isNormalUser = true;
     description = "marty";
-    extraGroups = ["root" "networkmanager" "wheel" ];
+    extraGroups = [ "root" "networkmanager" "wheel" ];
   };
-
-  # Enable automatic login for the user.
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "marty";
-
-  # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
-  systemd.services."getty@tty1".enable = false;
-  systemd.services."autovt@tty1".enable = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -110,28 +100,6 @@
   environment.variables.VISUAL = "hx";
   environment.variables.EDITOR = "hx";
 
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  environment.gnome.excludePackages = (with pkgs; [
-    gnome-photos
-    gnome-tour
-  ]) ++ (with pkgs.gnome; [
-    cheese # webcam tool
-    gnome-music
-    epiphany # web browser
-    geary # email reader
-    gnome-characters
-    tali # poker game
-    iagno # go game
-    hitori # sudoku game
-    yelp # Help view
-    gnome-contacts
-    gnome-initial-setup
-  ]);
-
-  programs.dconf.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }
