@@ -56,7 +56,7 @@
     in
     {
       nixosConfigurations = {
-        box = shareConfig "box";
+        hermes = shareConfig "hermes";
         tower = shareConfig "tower";
         hephaestus = shareConfig "hephaaestus";
         nixos = shareConfig "hephaestus";
