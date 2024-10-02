@@ -42,6 +42,7 @@
           system = "x86_64-linux";
           modules = [
             ./base.nix
+            ./wayland.nix
             ./${hostname}/configuration.nix
             ./${hostname}/hardware-configuration.nix
             home-manager.nixosModules.home-manager
@@ -57,21 +58,7 @@
       nixosConfigurations = {
         box = shareConfig "box";
         tower = shareConfig "tower";
-        hephaestus = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./base.nix
-            ./wayland.nix
-            ./hephaestus/configuration.nix
-            ./hephaestus/hardware-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marty = import ./home.nix;
-            }
-          ];
-        };
+        hephaestus = shareConfig "hephaaestus";
         nixos = shareConfig "hephaestus";
       };
     };
