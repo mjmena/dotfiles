@@ -23,6 +23,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprswitch.url = "github:h3rmt/hyprswitch/release";
+
   };
 
   # `outputs` are all the build result of the flake.
@@ -35,11 +37,12 @@
   # 
   # The `@` syntax here is used to alias the attribute set of the
   # inputs's parameter, making it convenient to use inside the function.
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
     let
       shareConfig = hostname:
         nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
           modules = [
             ./base.nix
             ./wayland.nix
@@ -49,7 +52,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.marty = import ./home.nix;
+              home-manager.users.marty = import ./home;
             }
           ];
         };
@@ -58,7 +61,7 @@
       nixosConfigurations = {
         hermes = shareConfig "hermes";
         tower = shareConfig "tower";
-        hephaestus = shareConfig "hephaaestus";
+        hephaestus = shareConfig "hephaestus";
         nixos = shareConfig "hephaestus";
       };
     };

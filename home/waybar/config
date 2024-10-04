@@ -1,0 +1,36 @@
+{
+	"layer": "top",
+	"position": "top",
+
+	"modules-left": [
+		"clock#date",
+	],
+
+	"modules-center": [
+		"clock#time",
+	],
+
+	"modules-right": [
+		"wireplumber",
+	],
+
+	// Modules
+
+	"clock#time": {
+		"interval": 10,
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+
+	"clock#date": {
+		"interval": 20,
+		"format": "{:%e %b %Y}",
+		"tooltip": false
+		//"tooltip-format": "{:%e %B %Y}"
+	},
+
+	"wireplumber": {
+		"format": "󰕾 {volume}%",
+		"on-click": "pavucontrol",
+	}
+}

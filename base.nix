@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
@@ -77,10 +77,11 @@
 
   #List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    discord
-    spotify
-    helix
+  environment.systemPackages = [
+    pkgs.vesktop
+    pkgs.helix
+    pkgs.yazi
+    inputs.hyprswitch.packages.x86_64-linux.default
   ];
 
   programs.git = {

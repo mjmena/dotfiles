@@ -1,14 +1,23 @@
 { config, ... }:
 {
   imports = [
-    ./home/helix.nix
+    ./helix.nix
   ];
   home.username = "marty";
   home.homeDirectory = "/home/marty";
 
+
   home.file = {
+    ".config/waybar" = {
+      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/waybar;
+      recursive = true;
+    };
+    ".config/hypr" = {
+      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/hypr;
+      recursive = true;
+    };
     ".config/wlogout" = {
-      source = config.lib.file.mkOutOfStoreSymlink ./home/wlogout;
+      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/wlogout;
       recursive = true;
     };
   };
@@ -32,7 +41,7 @@
 
     nushell = {
       enable = true;
-      configFile.source = ./home/config.nu;
+      configFile.source = ./config.nu;
       shellAliases = {
         vi = "hx";
         vim = "hx";
@@ -59,39 +68,6 @@
 
   };
 
-  dconf.settings = {
-    "org/gnome/shell" = {
-      favorite-apps = [
-        "firefox.desktop"
-        "Alacritty.desktop"
-        "org.gnome.Nautilus.desktop"
-      ];
-    };
-    "org/gnome/desktop/wm/preferences" = {
-      button-layout = ":minimize,maximize,close";
-      num-workspaces = 1;
-    };
-    "org/gnome/desktop/wm/keybindings" = {
-      switch-applications = [ ];
-      switch-applications-backward = [ ];
-      switch-windows = [ "<Super>Tab" "<Alt>Tab" ];
-      switch-windows-backward = [ "<Shift><Super>Tab" "<Shift><Alt>Tab" ];
-    };
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      enable-hot-corners = false;
-    };
-    "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [
-        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-      ];
-    };
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      name = "alacritty";
-      command = "alacritty";
-      binding = "<Super>T";
-    };
-  };
   # Packages that should be installed to the user profile.
   # home.packages = with pkgs; [];
   home.stateVersion = "23.11";
