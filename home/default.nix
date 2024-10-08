@@ -1,11 +1,11 @@
-{ config, ... }:
+{ inputs, config, pkgs, ... }:
 {
   imports = [
     ./helix.nix
+    inputs.ags.homeManagerModules.default
   ];
   home.username = "marty";
   home.homeDirectory = "/home/marty";
-
 
   home.file = {
     ".config/waybar" = {
@@ -20,6 +20,11 @@
       source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/wlogout;
       recursive = true;
     };
+  };
+
+  programs.ags = {
+    enable = true;
+
   };
 
   programs = {

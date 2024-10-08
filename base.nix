@@ -81,7 +81,6 @@
     pkgs.vesktop
     pkgs.helix
     pkgs.yazi
-    inputs.hyprswitch.packages.x86_64-linux.default
   ];
 
   programs.git = {
@@ -95,12 +94,17 @@
       core = {
         editor = "hx";
       };
-      credential.helper = "libsecret";
     };
   };
   environment.variables.VISUAL = "hx";
   environment.variables.EDITOR = "hx";
 
+  programs.gpg.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    enableSshSupport = true;
+    pinentryFlavor = "gtk2"; # Hyprland/Wayland
+  };
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

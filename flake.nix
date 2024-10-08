@@ -22,9 +22,7 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hyprswitch.url = "github:h3rmt/hyprswitch/release";
-
+    ags.url = "github:Aylur/ags";
   };
 
   # `outputs` are all the build result of the flake.
@@ -53,6 +51,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.marty = import ./home;
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
           ];
         };
