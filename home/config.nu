@@ -9,3 +9,4 @@ $env.config = {
 }
 
 alias z = cd
+alias vi = nix run github:mjmena/mvim --  

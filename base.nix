@@ -92,18 +92,9 @@
         email = "martinjxm@gmail.com";
       };
       core = {
-        editor = "hx";
+        editor = "nix run github:mjmena/mvim --";
       };
     };
-  };
-  environment.variables.VISUAL = "hx";
-  environment.variables.EDITOR = "hx";
-
-  programs.gpg.enable = true;
-  services.gpg-agent = {
-    enable = true;
-    enableSshSupport = true;
-    pinentryFlavor = "gtk2"; # Hyprland/Wayland
   };
 
   system.stateVersion = "23.11"; # Did you read the comment?

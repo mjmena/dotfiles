@@ -47,12 +47,6 @@
     nushell = {
       enable = true;
       configFile.source = ./config.nu;
-      shellAliases = {
-        vi = "hx";
-        vim = "hx";
-        nano = "hx";
-        cd = "z";
-      };
     };
 
     zoxide = {
