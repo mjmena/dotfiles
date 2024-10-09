@@ -1,10 +1,13 @@
-{ pkgs, ... }: {
-
+{
+  pkgs,
+  lib,
+  ...
+}: {
   services.greetd = {
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd hyprland";
+        command = "${lib.getBin pkgs.greetd.tuigreet} --cmd hyprland";
         user = "marty";
       };
       initial_session = {
@@ -20,8 +23,8 @@
   # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
   systemd.services.greetd.serviceConfig = {
     Type = "idle";
-    StandardInput = "tty";
-    StandardOutput = "tty";
+    StandardInput = "journal";
+    StandardOutput = "journal";
     StandardError = "journal"; # Without this errors will spam on screen
     # Without these bootlogs will spam on screen
     TTYReset = true;
