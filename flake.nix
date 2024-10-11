@@ -23,6 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags.url = "github:Aylur/ags";
+    mvim.url = "github:mjmena/mvim";
   };
 
   # `outputs` are all the build result of the flake.
@@ -41,9 +42,12 @@
     ...
   } @ inputs: let
     shareConfig = hostname:
-      nixpkgs.lib.nixosSystem {
+      nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+        };
         modules = [
           ./base.nix
           ./wayland.nix

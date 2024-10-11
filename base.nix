@@ -3,6 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
+  system,
   pkgs,
   ...
 }: {
@@ -111,7 +112,11 @@
     pkgs.vesktop
     pkgs.helix
     pkgs.yazi
+    inputs.mvim.packages.${system}.default
   ];
+
+  environment.variables.EDITOR = "nvim";
+  environment.variables.VISUAL = "nvim";
 
   programs.git = {
     enable = true;
@@ -126,6 +131,8 @@
       };
     };
   };
+
+  programs.direnv.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }
