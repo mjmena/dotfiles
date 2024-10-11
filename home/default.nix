@@ -1,5 +1,9 @@
-{ inputs, config, pkgs, ... }:
 {
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./helix.nix
     inputs.ags.homeManagerModules.default
@@ -20,11 +24,14 @@
       source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/wlogout;
       recursive = true;
     };
+    ".config/nushell" = {
+      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/nushell;
+      recursive = true;
+    };
   };
 
   programs.ags = {
     enable = true;
-
   };
 
   programs = {
@@ -36,35 +43,11 @@
           normal.family = "JetBrains Mono Nerd Font Mono";
           normal.style = "Regular";
         };
-        window = {
-          opacity = 0.9;
-          # startup_mode = "Fullscreen";
-        };
         selection.save_to_clipboard = true;
       };
     };
 
-    nushell = {
-      enable = true;
-      configFile.source = ./config.nu;
-    };
-
-    zoxide = {
-      enable = true;
-      enableNushellIntegration = true;
-    };
-
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = true;
-        character = {
-          success_symbol = "[➜](bold green)";
-          error_symbol = "[➜](bold red)";
-        };
-      };
-    };
-
+    nushell.enable = true;
   };
 
   # Packages that should be installed to the user profile.
