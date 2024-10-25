@@ -23,7 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ags.url = "github:Aylur/ags";
-    mvim.url = "github:mjmena/mvim";
     #shell + goodies
     world.url = "github:mjmena/world";
   };

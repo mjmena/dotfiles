@@ -1,15 +1,9 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  inputs,
-  system,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     modules/firefox.nix
-    modules/zellij.nix
   ];
 
   nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -112,7 +106,6 @@
     pkgs.vesktop
     pkgs.helix
     pkgs.yazi
-    inputs.mvim.packages.${system}.default
   ];
 
   environment.variables.EDITOR = "nvim";
