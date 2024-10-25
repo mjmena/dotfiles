@@ -1,5 +1,6 @@
 {
   inputs,
+  system,
   config,
   pkgs,
   ...
@@ -24,10 +25,6 @@
       source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/wlogout;
       recursive = true;
     };
-    ".config/nushell" = {
-      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/nushell;
-      recursive = true;
-    };
   };
 
   programs.ags = {
@@ -38,7 +35,7 @@
     alacritty = {
       enable = true;
       settings = {
-        shell = "/etc/profiles/per-user/marty/bin/nu";
+        shell = pkgs.lib.getExe inputs.world.packages.${system}.default;
         font = {
           normal.family = "JetBrains Mono Nerd Font Mono";
           normal.style = "Regular";
@@ -46,8 +43,6 @@
         selection.save_to_clipboard = true;
       };
     };
-
-    nushell.enable = true;
   };
 
   # Packages that should be installed to the user profile.

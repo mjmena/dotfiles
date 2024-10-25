@@ -24,6 +24,8 @@
     };
     ags.url = "github:Aylur/ags";
     mvim.url = "github:mjmena/mvim";
+    #shell + goodies
+    world.url = "github:mjmena/world";
   };
 
   # `outputs` are all the build result of the flake.
@@ -58,7 +60,10 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.marty = import ./home;
-            home-manager.extraSpecialArgs = {inherit inputs;};
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+              inherit system;
+            };
           }
         ];
       };
