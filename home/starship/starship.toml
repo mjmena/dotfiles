@@ -1,0 +1,28 @@
+format = """
+$directory\
+$git_branch\
+$git_state\
+$fill\
+$nix_shell\
+$direnv\
+$rust\
+$fill\
+$time\
+$line_break\
+$character"""
+
+[nix_shell]
+format = "[${symbol}]($style)"
+
+[direnv]
+format = "[(${loaded} with)](yellow) "
+disabled = false
+
+[rust]
+format = '[$symbol($version)]($style) '
+version_format = "v$major.$minor"
+
+[time]
+format = "[$time](bold white)"
+time_format = "%R"
+disabled = false

@@ -1,49 +1,38 @@
-{
-  inputs,
-  system,
-  config,
-  pkgs,
-  ...
+{ inputs
+, system
+, pkgs
+, config
+, ...
 }: {
   imports = [
     ./helix.nix
-    inputs.ags.homeManagerModules.default
   ];
   home.username = "marty";
   home.homeDirectory = "/home/marty";
 
-  home.file = {
-    ".config/waybar" = {
-      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/waybar;
-      recursive = true;
-    };
-    ".config/hypr" = {
-      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/hypr;
-      recursive = true;
-    };
-    ".config/wlogout" = {
-      source = config.lib.file.mkOutOfStoreSymlink /etc/nixos/home/wlogout;
-      recursive = true;
-    };
+  home.sessionVariables = {
+    SHELL = pkgs.lib.getExe pkgs.nushell;
   };
 
-  programs.ags = {
-    enable = true;
+  home.packages = [
+    pkgs.starship
+    pkgs.nushell
+  ];
+
+  xdg.configFile."nushell/env.nu".source = ./nushell/env.nu;
+  xdg.configFile."nushell/config.nu".source = ./nushell/config.nu;
+
+  xdg.configFile.alacritty = {
+    source = ./alacritty;
+    text = "shell=${pkgs.lib.getExe pkgs.nushell}";
+    recursive = true;
   };
 
-  programs = {
-    alacritty = {
-      enable = true;
-      settings = {
-        shell = pkgs.lib.getExe inputs.world.packages.${system}.default;
-        font = {
-          normal.family = "JetBrains Mono Nerd Font Mono";
-          normal.style = "Regular";
-        };
-        selection.save_to_clipboard = true;
-      };
+  xdg.configFile.starship =
+    {
+      source = ./starship;
+      recursive = true;
     };
-  };
 
   # Packages that should be installed to the user profile.
   # home.packages = with pkgs; [];

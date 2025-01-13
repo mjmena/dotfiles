@@ -12,19 +12,16 @@
     # which represents the GitHub repository URL + branch/commit-id/tag.
 
     # Official NixOS package source, using nixos-23.11 branch here
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     # home-manager, used for managing user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/master";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ags.url = "github:Aylur/ags";
-    #shell + goodies
-    world.url = "github:mjmena/world";
   };
 
   # `outputs` are all the build result of the flake.
@@ -37,41 +34,43 @@
   #
   # The `@` syntax here is used to alias the attribute set of the
   # inputs's parameter, making it convenient to use inside the function.
-  outputs = {
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    shareConfig = hostname:
-      nixpkgs.lib.nixosSystem rec {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          inherit system;
+  outputs =
+    { nixpkgs
+    , home-manager
+    , ...
+    } @ inputs:
+    let
+      shareConfig = hostname:
+        nixpkgs.lib.nixosSystem rec {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            inherit system;
+          };
+          modules = [
+            ./base.nix
+            ./gnome.nix
+            ./${hostname}/configuration.nix
+            ./${hostname}/hardware-configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.marty = import ./home;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit system;
+              };
+            }
+          ];
         };
-        modules = [
-          ./base.nix
-          ./wayland.nix
-          ./${hostname}/configuration.nix
-          ./${hostname}/hardware-configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.marty = import ./home;
-            home-manager.extraSpecialArgs = {
-              inherit inputs;
-              inherit system;
-            };
-          }
-        ];
+    in
+    {
+      nixosConfigurations = {
+        hermes = shareConfig "hermes";
+        tower = shareConfig "tower";
+        hephaestus = shareConfig "hephaestus";
+        nixos = shareConfig "hephaestus";
       };
-  in {
-    nixosConfigurations = {
-      hermes = shareConfig "hermes";
-      tower = shareConfig "tower";
-      hephaestus = shareConfig "hephaestus";
-      nixos = shareConfig "hephaestus";
     };
-  };
 }
