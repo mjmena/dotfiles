@@ -22,6 +22,7 @@
       # to avoid problems caused by different versions of nixpkgs.
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix.url = "github:danth/stylix";
   };
 
   # `outputs` are all the build result of the flake.
@@ -37,6 +38,7 @@
   outputs =
     { nixpkgs
     , home-manager
+    , stylix
     , ...
     } @ inputs:
     let
@@ -62,6 +64,7 @@
                 inherit system;
               };
             }
+            stylix.nixosModules.stylix
           ];
         };
     in

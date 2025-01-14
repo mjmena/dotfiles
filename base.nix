@@ -121,7 +121,7 @@
         email = "martinjxm@gmail.com";
       };
       core = {
-        editor = "nix run github:mjmena/mvim --";
+        editor = "hx";
       };
     };
   };

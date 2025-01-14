@@ -1,7 +1,4 @@
-{ inputs
-, system
-, pkgs
-, config
+{ pkgs
 , ...
 }: {
   imports = [
@@ -10,29 +7,25 @@
   home.username = "marty";
   home.homeDirectory = "/home/marty";
 
-  home.sessionVariables = {
-    SHELL = pkgs.lib.getExe pkgs.nushell;
-  };
-
-  home.packages = [
-    pkgs.starship
-    pkgs.nushell
-  ];
-
-  xdg.configFile."nushell/env.nu".source = ./nushell/env.nu;
-  xdg.configFile."nushell/config.nu".source = ./nushell/config.nu;
-
-  xdg.configFile.alacritty = {
-    source = ./alacritty;
-    text = "shell=${pkgs.lib.getExe pkgs.nushell}";
-    recursive = true;
-  };
-
-  xdg.configFile.starship =
-    {
-      source = ./starship;
-      recursive = true;
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      terminal.shell = pkgs.lib.getExe pkgs.nushell;
+      selection.save_to_clipboard = true;
+      window = {
+        startup_mode = "Maximized";
+        decorations = "None";
+      };
     };
+  };
+
+  programs.nushell = {
+    enable = true;
+  };
+
+  programs.starship = {
+    enable = true;
+  };
 
   # Packages that should be installed to the user profile.
   # home.packages = with pkgs; [];

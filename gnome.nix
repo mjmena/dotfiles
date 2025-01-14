@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 {
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -19,6 +19,13 @@
     gnome-contacts
     gnome-initial-setup
   ]);
+
+  stylix = {
+    enable = true;
+    image = ./wallpaper.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    opacity.terminal = 0.90;
+  };
 
   programs.dconf = {
     enable = true;
