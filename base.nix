@@ -105,9 +105,7 @@
   # $ nix search wget
   environment.systemPackages = [
     pkgs.vesktop
-    pkgs.helix
-    pkgs.yazi
-    pkgs.alacritty
+    pkgs.libreoffice-fresh
   ];
 
   environment.variables.EDITOR = "hx";

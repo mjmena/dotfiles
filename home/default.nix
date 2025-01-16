@@ -7,6 +7,11 @@
   home.username = "marty";
   home.homeDirectory = "/home/marty";
 
+  home.packages = [
+    pkgs.lazygit
+    pkgs.bat
+  ];
+
   programs.alacritty = {
     enable = true;
     settings = {
@@ -33,6 +38,11 @@
   programs.starship = {
     enable = true;
     enableNushellIntegration = true;
+    settings = {
+      nix_shell.format = "in [\$symbol](\$style)";
+      package.disabled = true;
+      cmd_duration.disabled = true;
+    };
   };
 
   # Packages that should be installed to the user profile.
