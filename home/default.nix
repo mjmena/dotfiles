@@ -21,10 +21,18 @@
 
   programs.nushell = {
     enable = true;
+    configFile.source = ./nushell/config.nu;
+  };
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableNushellIntegration = true;
   };
 
   programs.starship = {
     enable = true;
+    enableNushellIntegration = true;
   };
 
   # Packages that should be installed to the user profile.
