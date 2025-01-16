@@ -23,8 +23,8 @@
   stylix = {
     enable = true;
     image = ./wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    opacity.terminal = 0.90;
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/zenburn.yaml";
   };
 
   programs.dconf = {
