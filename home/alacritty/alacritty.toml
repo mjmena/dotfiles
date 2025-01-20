@@ -1,9 +1,0 @@
-terminal.shell="/etc/profiles/per-user/marty/bin/nu"
-
-[selection]
-save_to_clipboard = true
-
-[window]
-startup_mode = "Maximized"
-decorations= "None"
-opacity = 0.9
