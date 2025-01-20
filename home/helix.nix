@@ -18,6 +18,9 @@
           select = "block";
         };
       };
+      keys.normal = {
+        ret = ":write";
+      };
     };
     languages = {
       language-server.rust-analyzer.config.check = {
