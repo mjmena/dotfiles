@@ -17,9 +17,8 @@
   # TTY
   fonts.packages = with pkgs; [
     meslo-lgs-nf
-    nerd-fonts.fira-code
-    nerd-fonts.jetbrains-mono
   ];
+
   services.kmscon = {
     enable = true;
     hwRender = true;

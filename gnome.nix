@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, ... }:
 {
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
@@ -6,6 +6,8 @@
 
   environment.gnome.excludePackages = (with pkgs; [
     gnome-photos
+    gnome-maps
+    gnome-weather
     gnome-tour
     cheese
     gnome-music
@@ -23,8 +25,12 @@
   stylix = {
     enable = true;
     image = ./wallpaper.png;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/zenburn.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    opacity.terminal = .92;
+    fonts.monospace = {
+      name = "JetBrainsMono Nerd Font";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+    };
   };
 
   programs.dconf = {

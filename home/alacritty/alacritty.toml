@@ -1,9 +1,5 @@
 terminal.shell="/etc/profiles/per-user/marty/bin/nu"
 
-[font.normal]
-family = "JetBrains Mono Nerd Font Mono"
-style = "Regular"
-
 [selection]
 save_to_clipboard = true
 
