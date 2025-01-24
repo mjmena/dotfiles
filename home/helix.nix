@@ -17,6 +17,11 @@
           insert = "underline";
           select = "block";
         };
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "warning";
+          other-lines = "error";
+        };
       };
       keys.normal = {
         ret = ":write";

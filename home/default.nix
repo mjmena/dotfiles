@@ -10,6 +10,7 @@
   home.packages = [
     pkgs.lazygit
     pkgs.bat
+    pkgs.devenv
   ];
 
   programs.alacritty = {
