@@ -1,5 +1,9 @@
 { pkgs, lib, ... }:
 {
+  imports = [
+    ./modules/firefox.nix
+  ];
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -22,15 +26,6 @@
     gnome-initial-setup
   ]);
 
-  stylix = {
-    enable = true;
-    image = ./wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    fonts.monospace = {
-      name = "JetBrainsMono Nerd Font";
-      package = pkgs.nerd-fonts.jetbrains-mono;
-    };
-  };
 
   programs.dconf = {
     enable = true;

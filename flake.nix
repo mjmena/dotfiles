@@ -25,16 +25,6 @@
     stylix.url = "github:danth/stylix";
   };
 
-  # `outputs` are all the build result of the flake.
-  #
-  # A flake can have many use cases and different types of outputs.
-  #
-  # parameters in function `outputs` are defined in `inputs` and
-  # can be referenced by their names. However, `self` is an exception,
-  # this special parameter points to the `outputs` itself(self-reference)
-  #
-  # The `@` syntax here is used to alias the attribute set of the
-  # inputs's parameter, making it convenient to use inside the function.
   outputs =
     { nixpkgs
     , home-manager
@@ -51,7 +41,7 @@
           };
           modules = [
             ./base.nix
-            ./gnome.nix
+            ./desktop.nix
             ./${hostname}/configuration.nix
             ./${hostname}/hardware-configuration.nix
             home-manager.nixosModules.home-manager
@@ -74,6 +64,30 @@
         tower = shareConfig "tower";
         hephaestus = shareConfig "hephaestus";
         nixos = shareConfig "hephaestus";
+        gaia = nixpkgs.lib.nixosSystem rec {
+
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            inherit system;
+          };
+          modules = [
+            ./base.nix
+            ./gaia/configuration.nix
+            ./gaia/hardware-configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.marty = import ./home;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                inherit system;
+              };
+            }
+            stylix.nixosModules.stylix
+          ];
+        };
       };
     };
 }

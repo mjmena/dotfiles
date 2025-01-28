@@ -2,9 +2,16 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { pkgs, ... }: {
-  imports = [
-    modules/firefox.nix
-  ];
+
+  stylix = {
+    enable = true;
+    image = ./wallpaper.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+    fonts.monospace = {
+      name = "JetBrainsMono Nerd Font";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+    };
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Console
@@ -94,18 +101,12 @@
   users.users.marty = {
     isNormalUser = true;
     description = "marty";
-    extraGroups = [ "root" "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.nushell;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  #List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = [
-    pkgs.vesktop
-    pkgs.libreoffice-fresh
-  ];
 
   environment.variables.EDITOR = "hx";
   environment.variables.VISUAL = "hx";
