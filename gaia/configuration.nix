@@ -6,7 +6,7 @@
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "no";
+    settings.PermitRootLogin = "no";
   };
 
   stylix.fonts.sizes = {
