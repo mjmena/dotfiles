@@ -15,43 +15,46 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Console
-  console = {
-    font = "ter-132n";
-    packages = with pkgs; [ terminus_font ];
-    keyMap = "us";
+  # console = {
+  #   font = "ter-132n";
+  #   packages = with pkgs; [ terminus_font ];
+  #   keyMap = "us";
+  # };
+
+  # # TTY
+  # fonts.packages = with pkgs; [
+  #   meslo-lgs-nf
+  # ];
+
+  # services.kmscon = {
+  #   enable = true;
+  #   hwRender = true;
+  #   extraConfig = ''
+  #     font-name=MesloLGS NF
+  #     font-size=14
+  #   '';
+  # };
+
+  # # Boot
+  # # Bootloader.
+  # boot = {
+  #   # Plymouth
+  #   consoleLogLevel = 0;
+  #   initrd.verbose = false;
+  #   plymouth.enable = true;
+  #   kernelParams = [ "quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3" "boot.shell_on_fail" ];
+
+  #   # Boot Loader
+  #   loader = {
+  #     timeout = 5;
+  #     efi.canTouchEfiVariables = true;
+  #     systemd-boot.enable = true;
+  #   };
+  # };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
-
-  # TTY
-  fonts.packages = with pkgs; [
-    meslo-lgs-nf
-  ];
-
-  services.kmscon = {
-    enable = true;
-    hwRender = true;
-    extraConfig = ''
-      font-name=MesloLGS NF
-      font-size=14
-    '';
-  };
-
-  # Boot
-  # Bootloader.
-  boot = {
-    # Plymouth
-    consoleLogLevel = 0;
-    initrd.verbose = false;
-    plymouth.enable = true;
-    kernelParams = [ "quiet" "rd.systemd.show_status=false" "rd.udev.log_level=3" "udev.log_priority=3" "boot.shell_on_fail" ];
-
-    # Boot Loader
-    loader = {
-      timeout = 5;
-      efi.canTouchEfiVariables = true;
-      systemd-boot.enable = true;
-    };
-  };
-
   # Enable networking
   networking.networkmanager.enable = true;
   networking.firewall = {
