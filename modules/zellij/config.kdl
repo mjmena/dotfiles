@@ -1,5 +1,0 @@
-
-on_force_close "quit"
-simplified_ui true
-default_shell "nu"
-pane_frames false
