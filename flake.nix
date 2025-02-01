@@ -57,7 +57,7 @@
           };
           modules = [
             ./base.nix
-            ./modules/minecraft.nix
+            ./modules/minecraft
             ./gaia/configuration.nix
             ./gaia/hardware-configuration.nix
             home-manager.nixosModules.home-manager
