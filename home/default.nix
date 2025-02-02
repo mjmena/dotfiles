@@ -40,11 +40,18 @@
     enable = true;
     enableNushellIntegration = true;
     settings = {
+      directory.truncate_to_repo = false;
       nix_shell.format = "in [\$symbol](\$style)";
       package.disabled = true;
       cmd_duration.disabled = true;
     };
   };
+
+  programs.zoxide =
+    {
+      enable = true;
+      enableNushellIntegration = true;
+    };
 
   # Packages that should be installed to the user profile.
   # home.packages = with pkgs; [];
