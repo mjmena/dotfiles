@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   networking.hostName = "gaia"; # Define your hostname.  
@@ -12,4 +12,8 @@
   stylix.fonts.sizes = {
     terminal = 18;
   };
+
+  environment.systemPackages = [
+    pkgs.superTuxKart
+  ];
 }
