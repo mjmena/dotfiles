@@ -6,6 +6,8 @@
 
   environment.systemPackages = [
     pkgs.vesktop
+    pkgs.libreoffice-fresh
+    pkgs.spotify
   ];
 
   services.xserver.enable = true;
