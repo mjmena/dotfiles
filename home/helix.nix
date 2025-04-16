@@ -29,15 +29,18 @@
         };
       };
     languages = {
-      language-server.rust-analyzer.config.check = {
-        command = "clippy";
-      };
 
-      language = [{
-        name = "nix";
-        formatter = { command = "nixpkgs-fmt"; };
-        auto-format = true;
-      }];
+      language = [
+        {
+          name = "nix";
+          formatter = { command = "nixpkgs-fmt"; };
+          auto-format = true;
+        }
+        {
+          name = "rust";
+          auto-format = true;
+        }
+      ];
     };
   };
 }

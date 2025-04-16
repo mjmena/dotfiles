@@ -9,6 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     stylix.url = "github:danth/stylix";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
   };
 
@@ -16,6 +20,7 @@
     { nixpkgs
     , home-manager
     , stylix
+    , nixvim
     , ...
     } @ inputs:
     let
@@ -42,6 +47,7 @@
               };
             }
             stylix.nixosModules.stylix
+            nixvim.nixosModules.nixvim
           ];
         };
     in

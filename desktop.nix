@@ -2,6 +2,7 @@
 {
   imports = [
     ./modules/firefox.nix
+    ./modules/nvim.nix
   ];
 
   environment.systemPackages = [
