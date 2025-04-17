@@ -24,20 +24,40 @@
     };
     keymaps = [
       {
-        action = "<cmd>lua vim.lsp.buf.implementation()<CR>";
+        action = "<cmd>lua Snacks.explorer()<CR>";
+        key = "<leader><space>";
+      }
+      {
+        action = "<cmd>lua Snacks.picker.lsp_definitions()<CR>";
         key = "gd";
       }
       {
+        action = "<cmd>lua Snacks.picker.lsp_references()<CR>";
+        key = "gr";
+      }
+      {
+        action = "<cmd>lua Snacks.picker.diagnostics_buffer()<CR>";
+        key = "<leader>d";
+      }
+      {
+        action = "<cmd>lua Snacks.picker.diagnostics()<CR>";
+        key = "<leader>D";
+      }
+      {
+        action = "<cmd>lua Snacks.picker.smart()<CR>";
+        key = "<leader>f";
+      }
+      {
+        action = "<cmd>lua Snacks.picker.grep()<CR>";
+        key = "<leader>g";
+      }
+      {
         action = "<cmd>lua vim.lsp.buf.code_action()<CR>";
-        key = "<leader>ca";
+        key = "<leader>a";
       }
       {
-        action = "<cmd>Telescope git_files<CR>";
-        key = "ff";
-      }
-      {
-        action = "<cmd>Telescope live_grep<CR>";
-        key = "fg";
+        action = "<cmd>b#<CR>";
+        key = "ga";
       }
       {
         action = "<cmd>Oil<CR>";
@@ -50,12 +70,28 @@
         enable = true;
         settings = {
           completion = {
-            accept = {
-              auto_brackets.enabled = true;
-            };
             documentation = {
               auto_show = true;
             };
+          };
+          keymap = {
+            "<Tab>" = [
+              "select_next"
+              "scroll_documentation_down"
+            ];
+            "<S-Tab>" = [
+              "select_prev"
+              "scroll_documentation_up"
+            ];
+            "<C-CR>" = [
+              "show"
+              "show_documentation"
+              "hide_documentation"
+            ];
+            "<CR>" = [
+              "select_and_accept"
+              "fallback"
+            ];
           };
         };
       };
@@ -87,14 +123,14 @@
           use_default_keymaps = false;
         };
       };
-      telescope = {
+      snacks = {
         enable = true;
-        # extensions.file-browser = {
-        #   enable = true;
-        #   settings = {
-        #     hijack_netrw = true;
-        #   };
-        # };
+        settings = {
+          explorer.enabled = true;
+          input.enabled = true;
+          picker.enabled = true;
+          words.enabled = true;
+        };
       };
       treesitter.enable = true;
       lsp = {
