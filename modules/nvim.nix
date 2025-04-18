@@ -5,7 +5,7 @@
 {
   environment.systemPackages = [
     pkgs.nixfmt-rfc-style
-    pkgs.ripgrep
+    pkgs.fd
   ];
 
   programs.nixvim = {
@@ -23,6 +23,23 @@
       virtual_text = true;
     };
     keymaps = [
+      {
+        action = "<esc>:w<CR>";
+        key = "kj";
+        mode = "i";
+      }
+      {
+        action = "<cmd>lua Snacks.terminal()<CR>";
+        key = "<leader>t";
+        mode = [
+          "t"
+          "n"
+        ];
+      }
+      {
+        action = "<cmd>lua Snacks.lazygit()<CR>";
+        key = "<leader>l";
+      }
       {
         action = "<cmd>lua Snacks.explorer()<CR>";
         key = "<leader><space>";
@@ -47,6 +64,7 @@
         action = "<cmd>lua Snacks.picker.smart()<CR>";
         key = "<leader>f";
       }
+
       {
         action = "<cmd>lua Snacks.picker.grep()<CR>";
         key = "<leader>g";
@@ -58,10 +76,6 @@
       {
         action = "<cmd>b#<CR>";
         key = "ga";
-      }
-      {
-        action = "<cmd>Oil<CR>";
-        key = "`";
       }
     ];
 
@@ -114,21 +128,18 @@
       fidget.enable = true;
       nvim-autopairs.enable = true;
 
-      oil = {
-        enable = true;
-        settings = {
-          keymaps = {
-            "<CR>" = "actions.select";
-          };
-          use_default_keymaps = false;
-        };
-      };
       snacks = {
         enable = true;
         settings = {
           explorer.enabled = true;
           input.enabled = true;
-          picker.enabled = true;
+          picker = {
+            enabled = true;
+            sources.explorer = {
+              auto_close = true;
+            };
+          };
+
           words.enabled = true;
         };
       };
