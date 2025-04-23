@@ -6,6 +6,7 @@
   environment.systemPackages = [
     pkgs.nixfmt-rfc-style
     pkgs.fd
+    pkgs.ripgrep
   ];
 
   programs.nixvim = {

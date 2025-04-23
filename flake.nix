@@ -14,17 +14,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-minecraft.url = "github:Infinidoge/nix-minecraft";
+    ghostty.url = "github:ghostty-org/ghostty";
   };
 
   outputs =
-    { nixpkgs
-    , home-manager
-    , stylix
-    , nixvim
-    , ...
-    } @ inputs:
+    {
+      nixpkgs,
+      home-manager,
+      stylix,
+      nixvim,
+      ...
+    }@inputs:
     let
-      shareConfig = hostname:
+      shareConfig =
+        hostname:
         nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
