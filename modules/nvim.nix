@@ -146,7 +146,13 @@
           words.enabled = true;
         };
       };
-      treesitter.enable = true;
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
+      };
       lsp = {
         enable = true;
         servers = {
