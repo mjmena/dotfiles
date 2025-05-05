@@ -93,10 +93,12 @@
             "<Tab>" = [
               "select_next"
               "scroll_documentation_down"
+              "fallback"
             ];
             "<S-Tab>" = [
               "select_prev"
               "scroll_documentation_up"
+              "fallback"
             ];
             "<C-CR>" = [
               "show"
@@ -154,6 +156,7 @@
             installRustc = false;
             installCargo = false;
           };
+          ts_ls.enable = true;
         };
       };
       web-devicons.enable = true;

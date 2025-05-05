@@ -1,9 +1,8 @@
-{ pkgs
-, ...
-}: {
-  imports = [
-    ./helix.nix
-  ];
+{
+  pkgs,
+  ...
+}:
+{
   home.username = "marty";
   home.homeDirectory = "/home/marty";
 
@@ -32,6 +31,7 @@
 
   programs.direnv = {
     enable = true;
+    silent = true;
     nix-direnv.enable = true;
     enableNushellIntegration = true;
   };
@@ -47,11 +47,10 @@
     };
   };
 
-  programs.zoxide =
-    {
-      enable = true;
-      enableNushellIntegration = true;
-    };
+  programs.zoxide = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
 
   # Packages that should be installed to the user profile.
   # home.packages = with pkgs; [];
