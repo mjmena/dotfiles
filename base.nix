@@ -20,6 +20,9 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables.EDITOR = "nvim";
+  environment.variables.VISUAL = "nvim";
+
   stylix = {
     enable = true;
     image = ./wallpaper.png;
@@ -109,9 +112,6 @@
     shell = pkgs.nushell;
   };
 
-  environment.variables.EDITOR = "hx";
-  environment.variables.VISUAL = "hx";
-
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -119,9 +119,6 @@
       user = {
         name = "mjmena";
         email = "martinjxm@gmail.com";
-      };
-      core = {
-        editor = "hx";
       };
     };
   };

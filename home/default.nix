@@ -11,6 +11,15 @@
     pkgs.bat
     pkgs.devenv
   ];
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+      user = {
+        email = "martinjxm@gmail.com";
+        name = "Martin Mena";
+      };
+    };
+  };
 
   programs.alacritty = {
     enable = true;
@@ -27,6 +36,10 @@
   programs.nushell = {
     enable = true;
     configFile.source = ./nushell/config.nu;
+    environmentVariables = {
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
   };
 
   programs.direnv = {
