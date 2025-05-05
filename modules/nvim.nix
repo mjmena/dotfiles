@@ -119,6 +119,7 @@
             timeout_ms = 500;
           };
           formatters_by_ft = {
+            go = [ "gofmt" ];
             nix = [ "nixfmt" ];
             rust = [
               "leptosfmt"
@@ -163,6 +164,7 @@
             installCargo = false;
           };
           ts_ls.enable = true;
+          gopls.enable = true;
         };
       };
       web-devicons.enable = true;
