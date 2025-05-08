@@ -118,12 +118,31 @@
           format_on_save = {
             timeout_ms = 500;
           };
+          formatters = {
+            dioxus = {
+              command = "dx";
+              args = [
+                "fmt"
+                "-f"
+                "-"
+              ];
+            };
+            rustywind_semi = {
+              command = "rustywind";
+              args = [
+                "--custom-regex"
+                ''\b(?:class(?:Name)?\s*(?:=|:)\s*["'])([_a-zA-Z0-9\.,\s\-:\[\]()#]+)["']''
+                "--stdin"
+              ];
+            };
+          };
           formatters_by_ft = {
             go = [ "gofmt" ];
             nix = [ "nixfmt" ];
             rust = [
               "leptosfmt"
-              "rustywind"
+              "rustywind_semi"
+              "dioxus"
               "rustfmt"
             ];
           };
