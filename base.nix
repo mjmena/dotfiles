@@ -112,6 +112,10 @@
     shell = pkgs.nushell;
   };
 
+  environment.systemPackages = [
+    pkgs.zellij
+  ];
+
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
