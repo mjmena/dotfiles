@@ -14,7 +14,7 @@
     pkgs.vesktop
     pkgs.libreoffice-fresh
     pkgs.spotify
-    inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.antigravity-nix.packages.x86_64-linux.default
   ];
 
   services.xserver.enable = true;
