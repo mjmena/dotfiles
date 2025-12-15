@@ -12,5 +12,6 @@
   };
   environment.systemPackages = [
     pkgs.r2modman
+    pkgs.slack
   ];
 }
