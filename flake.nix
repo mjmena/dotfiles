@@ -29,8 +29,8 @@
       ...
     }@inputs:
     let
-      shareConfig =
-        hostname:
+      mkSystem =
+        hostname: extraModules:
         nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
@@ -39,7 +39,6 @@
           };
           modules = [
             ./base.nix
-            ./desktop.nix
             ./${hostname}/configuration.nix
             ./${hostname}/hardware-configuration.nix
             home-manager.nixosModules.home-manager
@@ -52,39 +51,25 @@
                 inherit system;
               };
             }
-            stylix.nixosModules.stylix
             nixvim.nixosModules.nixvim
-          ];
+          ]
+          ++ extraModules;
         };
     in
     {
       nixosConfigurations = {
-        hermes = shareConfig "hermes";
-        hephaestus = shareConfig "hephaestus";
-        gaia = nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-            inherit system;
-          };
-          modules = [
-            ./base.nix
-            ./modules/minecraft
-            ./gaia/configuration.nix
-            ./gaia/hardware-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marty = import ./home;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit system;
-              };
-            }
-            stylix.nixosModules.stylix
-          ];
-        };
+        hermes = mkSystem "hermes" [
+          ./desktop.nix
+          stylix.nixosModules.stylix
+        ];
+        hephaestus = mkSystem "hephaestus" [
+          ./desktop.nix
+          stylix.nixosModules.stylix
+        ];
+        gaia = mkSystem "gaia" [
+          ./modules/minecraft
+        ];
+        apheleia = mkSystem "apheleia" [ ];
       };
     };
 }
