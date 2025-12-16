@@ -27,12 +27,5 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    virtualHosts."mjmena.com" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://localhost:3000";
-      };
-    };
   };
 }

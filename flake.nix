@@ -79,6 +79,7 @@
           {
             services.beerio.enable = true;
             services.beerio.package = inputs.beerio.packages.${system}.default;
+            services.beerio.domain = "mjmena.com";
           }
         ];
       };

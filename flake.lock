@@ -98,17 +98,14 @@
         ]
       },
       "locked": {
-        "lastModified": 1765848366,
-        "narHash": "sha256-RGLnJXKQjtMXGN1RmFk3vCZC8tWgrAF2WhxET6+hetA=",
-        "owner": "mjmena",
-        "repo": "beerio.js",
-        "rev": "73f1a7288839082623e9bd1887fc33fe510e3a1b",
-        "type": "github"
+        "lastModified": 1765853713,
+        "narHash": "sha256-qnrlLnj3BQ35gMi9J/eWjLOFnWa2PAllOjvqaEjkFQE=",
+        "path": "/home/marty/dev/beerio.js",
+        "type": "path"
       },
       "original": {
-        "owner": "mjmena",
-        "repo": "beerio.js",
-        "type": "github"
+        "path": "/home/marty/dev/beerio.js",
+        "type": "path"
       }
     },
     "fenix": {
