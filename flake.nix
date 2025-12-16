@@ -18,6 +18,10 @@
       url = "github:jacopone/antigravity-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    beerio = {
+      url = "github:mjmena/beerio.js";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -29,10 +33,11 @@
       ...
     }@inputs:
     let
+      system = "x86_64-linux";
       mkSystem =
         hostname: extraModules:
         nixpkgs.lib.nixosSystem rec {
-          system = "x86_64-linux";
+          inherit system;
           specialArgs = {
             inherit inputs;
             inherit system;
@@ -69,7 +74,13 @@
         gaia = mkSystem "gaia" [
           ./modules/minecraft
         ];
-        apheleia = mkSystem "apheleia" [ ];
+        apheleia = mkSystem "apheleia" [
+          inputs.beerio.nixosModules.default
+          {
+            services.beerio.enable = true;
+            services.beerio.package = inputs.beerio.packages.${system}.default;
+          }
+        ];
       };
     };
 }
