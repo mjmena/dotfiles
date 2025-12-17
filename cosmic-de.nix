@@ -16,6 +16,7 @@
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
     pkgs.google-chrome
+    pkgs.prismlauncher
   ];
 
   # Enable the COSMIC login manager
