@@ -16,6 +16,7 @@
   };
 
   nix.settings.auto-optimise-store = true;
+  nix.settings.download-buffer-size = 268435456; # 256MB
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

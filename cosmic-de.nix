@@ -15,6 +15,7 @@
     pkgs.libreoffice-fresh
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
+    pkgs.google-chrome
   ];
 
   # Enable the COSMIC login manager
@@ -25,8 +26,4 @@
 
   services.system76-scheduler.enable = true;
 
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "marty";
-  };
 }
