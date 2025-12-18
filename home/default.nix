@@ -10,6 +10,7 @@
     pkgs.lazygit
     pkgs.bat
     pkgs.devenv
+    pkgs.btop
   ];
   programs.jujutsu = {
     enable = true;
@@ -24,34 +25,42 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      terminal.shell = pkgs.lib.getExe pkgs.nushell;
+      terminal.shell = pkgs.lib.getExe pkgs.zsh;
       selection.save_to_clipboard = true;
       window = {
         startup_mode = "Maximized";
         decorations = "None";
       };
+      font = {
+        normal = {
+          family = "JetBrainsMono NF";
+          style = "Regular";
+        };
+        size = 11;
+      };
     };
   };
 
-  programs.nushell = {
+  programs.zsh = {
     enable = true;
-    configFile.source = ./nushell/config.nu;
-    environmentVariables = {
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+    initContent = ''
+      # Ensure starship, zoxide, and direnv are properly initialized if not already handled by HM
+    '';
   };
 
   programs.direnv = {
     enable = true;
-    silent = true;
+    # silent = true;
     nix-direnv.enable = true;
-    enableNushellIntegration = true;
+    enableZshIntegration = true;
   };
 
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
+    enableZshIntegration = true;
     settings = {
       directory.truncate_to_repo = false;
       nix_shell.format = "in [\$symbol](\$style)";
@@ -62,7 +71,7 @@
 
   programs.zoxide = {
     enable = true;
-    enableNushellIntegration = true;
+    enableZshIntegration = true;
   };
 
   # Packages that should be installed to the user profile.

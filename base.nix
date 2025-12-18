@@ -105,12 +105,16 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAGrfWIpQ/j/fx4KqmsxvKQY1VTKH1XJdOIw929/yhq marty" # hephaestus
     ];
 
-    shell = pkgs.nushell;
+    shell = pkgs.zsh;
   };
 
   environment.systemPackages = [
     pkgs.zellij
     pkgs.python315
+  ];
+
+  fonts.packages = [
+    pkgs.nerd-fonts.jetbrains-mono
   ];
 
   programs.git = {
@@ -124,6 +128,7 @@
     };
   };
 
+  programs.zsh.enable = true;
   programs.direnv.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
