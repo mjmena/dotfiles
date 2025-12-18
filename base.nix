@@ -23,6 +23,7 @@
 
   environment.variables.EDITOR = "nvim";
   environment.variables.VISUAL = "nvim";
+  environment.variables.TERMINAL = "alacritty";
 
   # Boot
   # Bootloader.
