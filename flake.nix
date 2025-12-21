@@ -64,11 +64,11 @@
     {
       nixosConfigurations = {
         hermes = mkSystem "hermes" [
-          ./desktop.nix
+          ./gnome.nix
           stylix.nixosModules.stylix
         ];
         hephaestus = mkSystem "hephaestus" [
-          ./cosmic-de.nix
+          ./gnome.nix
         ];
         gaia = mkSystem "gaia" [
           ./modules/minecraft

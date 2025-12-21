@@ -15,17 +15,9 @@
     pkgs.libreoffice-fresh
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
+    pkgs.prismlauncher
+    pkgs.slack
   ];
-
-  stylix = {
-    enable = true;
-    image = ./wallpaper.png;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-    fonts.monospace = {
-      name = "JetBrainsMono Nerd Font";
-      package = pkgs.nerd-fonts.jetbrains-mono;
-    };
-  };
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;

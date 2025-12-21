@@ -2,7 +2,10 @@
 
 {
   networking.hostName = "hephaestus"; # Define your hostname.
-  networking.firewall.allowedTCPPorts = [ 8080 ];
+  networking.firewall.allowedTCPPorts = [
+    3000
+    8080
+  ];
 
   programs.steam = {
     enable = true;
