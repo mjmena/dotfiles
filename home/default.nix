@@ -12,15 +12,6 @@
     pkgs.devenv
     pkgs.btop
   ];
-  programs.jujutsu = {
-    enable = true;
-    settings = {
-      user = {
-        email = "martinjxm@gmail.com";
-        name = "Martin Mena";
-      };
-    };
-  };
 
   programs.alacritty = {
     enable = true;

@@ -12,11 +12,8 @@
 
   environment.systemPackages = [
     pkgs.vesktop
-    pkgs.libreoffice-fresh
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
-    pkgs.prismlauncher
-    pkgs.slack
   ];
 
   services.xserver.enable = true;
