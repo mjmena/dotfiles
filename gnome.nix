@@ -14,11 +14,18 @@
     pkgs.vesktop
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
+    pkgs.flameshot
   ];
 
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
+
   services.xserver.desktopManager.gnome.enable = true;
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+  };
 
   environment.gnome.excludePackages = (
     with pkgs;
@@ -41,6 +48,8 @@
     ]
   );
 
+  # if keybindings are not working, reset them with:
+  # gsettings reset org.gnome.settings- daemon.plugins.media-keys custom-keybindings
   programs.dconf = {
     enable = true;
 
@@ -53,6 +62,12 @@
               "Alacritty.desktop"
               "org.gnome.Nautilus.desktop"
             ];
+          };
+          "org/gnome/shell/keybindings" = {
+            show-screenshot-ui = mkEmptyArray type.string;
+          };
+          "org/gnome/mutter/keybindings" = {
+            switch-monitor = mkEmptyArray type.string;
           };
           "org/gnome/desktop/wm/preferences" = {
             button-layout = ":minimize,maximize,close";
@@ -72,17 +87,31 @@
           };
           "org/gnome/desktop/interface" = {
             color-scheme = "prefer-dark";
-            enable-hot-corners = false;
           };
           "org/gnome/settings-daemon/plugins/media-keys" = {
             custom-keybindings = [
               "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+              "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+              "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
             ];
+            screenshot = mkEmptyArray type.string;
+            window-screenshot = mkEmptyArray type.string;
+            area-screenshot = mkEmptyArray type.string;
           };
           "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
             name = "alacritty";
             command = "alacritty";
             binding = "<Super>T";
+          };
+          "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+            name = "flameshot-super-p";
+            command = "sh -c 'flameshot gui > /home/marty/flameshot_debug.log 2>&1'";
+            binding = "<Super>p";
+          };
+          "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+            name = "flameshot-print";
+            command = "sh -c 'flameshot gui >> /home/marty/flameshot_debug.log 2>&1'";
+            binding = "Print";
           };
         };
       }
