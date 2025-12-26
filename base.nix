@@ -112,6 +112,7 @@
   environment.systemPackages = [
     pkgs.zellij
     pkgs.python315
+    pkgs.tmux
   ];
 
   fonts.packages = [

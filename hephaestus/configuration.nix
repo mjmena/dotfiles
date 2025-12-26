@@ -14,6 +14,10 @@
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
 
+  programs.zsh.shellAliases = {
+    vpn-mcclatchy = "tmux new-session -d -s vpn-mcclatchy 'sudo openfortivpn vpn.mcclatchy.com:443 --saml-login'";
+  };
+
   environment.systemPackages = [
     pkgs.r2modman
     pkgs.slack
@@ -21,5 +25,6 @@
     pkgs.libreoffice-fresh
     pkgs.prismlauncher
     pkgs.flameshot
+    pkgs.openfortivpn
   ];
 }
