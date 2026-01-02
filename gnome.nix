@@ -14,7 +14,7 @@
     pkgs.vesktop
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
-    pkgs.flameshot
+    pkgs.gradia
   ];
 
   services.xserver.enable = true;
@@ -94,9 +94,6 @@
               "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
               "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
             ];
-            screenshot = mkEmptyArray type.string;
-            window-screenshot = mkEmptyArray type.string;
-            area-screenshot = mkEmptyArray type.string;
           };
           "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
             name = "alacritty";
@@ -104,13 +101,13 @@
             binding = "<Super>T";
           };
           "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-            name = "flameshot-super-p";
-            command = "sh -c 'flameshot gui > /home/marty/flameshot_debug.log 2>&1'";
+            name = "gradia-super-p";
+            command = "gradia --screenshot=INTERACTIVE";
             binding = "<Super>p";
           };
           "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
-            name = "flameshot-print";
-            command = "sh -c 'flameshot gui >> /home/marty/flameshot_debug.log 2>&1'";
+            name = "gradia-print";
+            command = "gradia --screenshot=INTERACTIVE";
             binding = "Print";
           };
         };

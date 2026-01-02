@@ -24,7 +24,8 @@
     pkgs.google-chrome
     pkgs.libreoffice-fresh
     pkgs.prismlauncher
-    pkgs.flameshot
     pkgs.openfortivpn
+    pkgs.unityhub
+    pkgs.vscode
   ];
 }

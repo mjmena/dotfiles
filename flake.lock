@@ -8,11 +8,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766071268,
-        "narHash": "sha256-YXup9z4jINEm1pMaJfyOCcB/Au3BE/2piukN0yLgt30=",
+        "lastModified": 1766394679,
+        "narHash": "sha256-huyKMNTvsqawI1mHocntSV4UcthHNfg21J9PQ3fByHg=",
         "owner": "jacopone",
         "repo": "antigravity-nix",
-        "rev": "668941467026c434d3bfa21a9ef0fc90b93130be",
+        "rev": "89f5f9da4a42f7af91cd941ed8d1b81e99c5007d",
         "type": "github"
       },
       "original": {
