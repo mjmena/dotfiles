@@ -15,12 +15,13 @@
     pkgs.spotify
     inputs.antigravity-nix.packages.x86_64-linux.default
     pkgs.gradia
+    pkgs.pwvucontrol
   ];
 
   services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
 
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   xdg.portal = {
     enable = true;

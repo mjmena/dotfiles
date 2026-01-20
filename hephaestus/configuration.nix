@@ -27,5 +27,7 @@
     pkgs.openfortivpn
     pkgs.unityhub
     pkgs.vscode
+    pkgs.lutris
+    pkgs.dbeaver-bin
   ];
 }
