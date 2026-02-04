@@ -25,9 +25,13 @@
     pkgs.libreoffice-fresh
     pkgs.prismlauncher
     pkgs.openfortivpn
-    pkgs.unityhub
     pkgs.vscode
-    pkgs.lutris
     pkgs.dbeaver-bin
+    (pkgs.lutris.override {
+      extraPkgs = pkgs: [
+        pkgs.wineWowPackages.stable
+        pkgs.winetricks
+      ];
+    })
   ];
 }

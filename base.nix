@@ -113,6 +113,7 @@
     pkgs.zellij
     pkgs.python315
     pkgs.tmux
+    pkgs.devenv
   ];
 
   fonts.packages = [
