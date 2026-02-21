@@ -9,6 +9,11 @@
     "flakes"
   ];
 
+  nix.settings.trusted-users = [
+    "root"
+    "marty"
+  ];
+
   nix.gc = {
     automatic = true;
     dates = "weekly";

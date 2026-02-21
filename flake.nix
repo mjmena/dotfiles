@@ -68,7 +68,7 @@
           stylix.nixosModules.stylix
         ];
         hephaestus = mkSystem "hephaestus" [
-          ./gnome.nix
+          ./cosmic-de.nix
         ];
         gaia = mkSystem "gaia" [
           ./modules/minecraft

@@ -19,19 +19,10 @@
   };
 
   environment.systemPackages = [
+    pkgs.discord
     pkgs.r2modman
     pkgs.slack
     pkgs.google-chrome
-    pkgs.libreoffice-fresh
-    pkgs.prismlauncher
     pkgs.openfortivpn
-    pkgs.vscode
-    pkgs.dbeaver-bin
-    (pkgs.lutris.override {
-      extraPkgs = pkgs: [
-        pkgs.wineWowPackages.stable
-        pkgs.winetricks
-      ];
-    })
   ];
 }
