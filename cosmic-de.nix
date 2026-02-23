@@ -19,6 +19,10 @@
     pkgs.prismlauncher
   ];
 
+  environment.sessionVariables = {
+    COSMIC_DISABLE_DIRECT_SCANOUT = "1";
+  };
+
   # Enable the COSMIC login manager
   services.displayManager.cosmic-greeter.enable = true;
 

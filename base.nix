@@ -119,6 +119,8 @@
     pkgs.python315
     pkgs.tmux
     pkgs.devenv
+    pkgs.obs-studio
+    pkgs.mpv
   ];
 
   fonts.packages = [
