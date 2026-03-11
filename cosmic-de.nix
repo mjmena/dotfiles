@@ -21,6 +21,8 @@
 
   environment.sessionVariables = {
     COSMIC_DISABLE_DIRECT_SCANOUT = "1";
+    NIXOS_OZONE_WL = "0";
+    MOZ_ENABLE_WAYLAND = "0";
   };
 
   # Enable the COSMIC login manager
