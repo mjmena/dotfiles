@@ -8,6 +8,7 @@
   imports = [
     ./modules/firefox.nix
     ./modules/nvim.nix
+    ./modules/vscode.nix
   ];
 
   environment.systemPackages = [
@@ -17,12 +18,14 @@
     inputs.antigravity-nix.packages.x86_64-linux.default
     pkgs.google-chrome
     pkgs.prismlauncher
+    inputs.claude-code-nix.packages.x86_64-linux.default
+    pkgs.snowsql
   ];
 
   environment.sessionVariables = {
     COSMIC_DISABLE_DIRECT_SCANOUT = "1";
-    NIXOS_OZONE_WL = "0";
-    MOZ_ENABLE_WAYLAND = "0";
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
   };
 
   # Enable the COSMIC login manager
