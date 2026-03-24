@@ -26,6 +26,10 @@
       # Noctalia desktop shell
       services.noctalia-shell.enable = true;
 
+      # Bluetooth
+      hardware.bluetooth.enable = true;
+      hardware.bluetooth.powerOnBoot = true;
+
       # XDG portals
       xdg.portal = {
         enable = true;
@@ -42,6 +46,7 @@
         vlc
         nautilus
         xdg-utils
+        xwayland-satellite
       ];
     })
   ];
@@ -51,74 +56,7 @@
     ({ ... }: {
       programs.noctalia-shell.enable = true;
 
-      xdg.configFile."niri/config.kdl".text = ''
-        input {
-            keyboard {
-                xkb { }
-            }
-            touchpad {
-                tap
-                natural-scroll
-            }
-        }
-
-        layout {
-            gaps 8
-            default-column-width { proportion 0.5; }
-
-            focus-ring {
-                width 2
-                active-color "#7fc8ff"
-                inactive-color "#505050"
-            }
-        }
-
-        binds {
-            Mod+Return { spawn "alacritty"; }
-            Mod+Q { close-window; }
-
-            // Vim-style navigation
-            Mod+H { focus-column-left; }
-            Mod+L { focus-column-right; }
-            Mod+J { focus-window-down; }
-            Mod+K { focus-window-up; }
-            Mod+Shift+H { move-column-left; }
-            Mod+Shift+L { move-column-right; }
-            Mod+Shift+J { move-window-down; }
-            Mod+Shift+K { move-window-up; }
-
-            // Arrow key navigation
-            Mod+Left { focus-column-left; }
-            Mod+Right { focus-column-right; }
-            Mod+Down { focus-window-down; }
-            Mod+Up { focus-window-up; }
-            Mod+Shift+Left { move-column-left; }
-            Mod+Shift+Right { move-column-right; }
-            Mod+Shift+Down { move-window-down; }
-            Mod+Shift+Up { move-window-up; }
-
-            // Workspaces
-            Mod+1 { focus-workspace 1; }
-            Mod+2 { focus-workspace 2; }
-            Mod+3 { focus-workspace 3; }
-            Mod+4 { focus-workspace 4; }
-            Mod+Shift+1 { move-column-to-workspace 1; }
-            Mod+Shift+2 { move-column-to-workspace 2; }
-            Mod+Shift+3 { move-column-to-workspace 3; }
-            Mod+Shift+4 { move-column-to-workspace 4; }
-
-            // Layout
-            Mod+F { maximize-column; }
-            Mod+Shift+F { fullscreen-window; }
-            Mod+Minus { set-column-width "-10%"; }
-            Mod+Equal { set-column-width "+10%"; }
-
-            // System
-            Print { screenshot; }
-            Mod+Shift+E { quit; }
-            Mod+Shift+Slash { show-hotkey-overlay; }
-        }
-      '';
+      xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
     })
   ];
 }
