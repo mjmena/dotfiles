@@ -2,12 +2,18 @@
   description = "Marty's NixOS Flake";
 
   inputs = {
+    # Build system
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+
+    # NixOS ecosystem
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    # home-manager, used for managing user configuration
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Feature inputs
     stylix.url = "github:danth/stylix";
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -28,63 +34,14 @@
     };
   };
 
-  outputs =
-    {
-      nixpkgs,
-      home-manager,
-      stylix,
-      nixvim,
-      ...
-    }@inputs:
-    let
-      system = "x86_64-linux";
-      mkSystem =
-        hostname: extraModules:
-        nixpkgs.lib.nixosSystem rec {
-          inherit system;
-          specialArgs = {
-            inherit inputs;
-            inherit system;
-          };
-          modules = [
-            ./base.nix
-            ./${hostname}/configuration.nix
-            ./${hostname}/hardware-configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.marty = import ./home;
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit system;
-              };
-            }
-            nixvim.nixosModules.nixvim
-          ]
-          ++ extraModules;
-        };
-    in
-    {
-      nixosConfigurations = {
-        hermes = mkSystem "hermes" [
-          ./gnome.nix
-          stylix.nixosModules.stylix
-        ];
-        hephaestus = mkSystem "hephaestus" [
-          ./cosmic-de.nix
-        ];
-        gaia = mkSystem "gaia" [
-          ./modules/minecraft
-        ];
-        apheleia = mkSystem "apheleia" [
-          inputs.beerio.nixosModules.default
-          {
-            services.beerio.enable = true;
-            services.beerio.package = inputs.beerio.packages.${system}.default;
-            services.beerio.domain = "mjmena.com";
-          }
-        ];
-      };
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+
+      imports = [
+        (inputs.import-tree ./modules)
+        (inputs.import-tree ./features)
+        (inputs.import-tree ./hosts)
+      ];
     };
 }
