@@ -4,7 +4,7 @@
     hardwareConfig = ../hardware/hephaestus.nix;
 
     features = [
-      "gnome"
+      "niri"
       "firefox"
       "nvim"
       "vscode"
