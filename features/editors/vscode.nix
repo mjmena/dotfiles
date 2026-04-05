@@ -10,7 +10,6 @@
             ms-python.debugpy
             ms-toolsai.jupyter
             anthropic.claude-code
-            kdl-org.kdl
           ];
         })
       ];

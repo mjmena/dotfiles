@@ -10,9 +10,25 @@
       };
 
       environment.systemPackages = [
-        pkgs.discord
+        (pkgs.symlinkJoin {
+          name = "discord";
+          paths = [ pkgs.discord ];
+          buildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/Discord \
+              --add-flags "--enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland"
+          '';
+        })
         pkgs.r2modman
-        pkgs.vesktop
+        (pkgs.symlinkJoin {
+          name = "vesktop";
+          paths = [ pkgs.vesktop ];
+          buildInputs = [ pkgs.makeWrapper ];
+          postBuild = ''
+            wrapProgram $out/bin/vesktop \
+              --add-flags "--enable-features=UseOzonePlatform,WebRTCPipeWireCapturer --ozone-platform=wayland"
+          '';
+        })
         pkgs.spotify
         pkgs.obs-studio
         pkgs.mpv

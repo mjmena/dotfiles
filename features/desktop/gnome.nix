@@ -9,12 +9,19 @@
       xdg.portal = {
         enable = true;
         extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+        config.gnome.default = "*";
+      };
+
+      environment.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
       };
 
       environment.systemPackages = [
         pkgs.vlc
         pkgs.gradia
         pkgs.pwvucontrol
+        pkgs.wl-clipboard
+        pkgs.gnome-screenshot
       ];
 
       environment.gnome.excludePackages = (
@@ -70,7 +77,7 @@
                 ];
               };
               "org/gnome/shell/keybindings" = {
-                show-screenshot-ui = mkEmptyArray type.string;
+                toggle-quick-settings = mkEmptyArray type.string;
               };
               "org/gnome/mutter/keybindings" = {
                 switch-monitor = mkEmptyArray type.string;
@@ -105,6 +112,11 @@
                 name = "alacritty";
                 command = "alacritty";
                 binding = "<Super>T";
+              };
+              "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+                name = "Instant Area Screenshot";
+                command = "gnome-screenshot -a -c";
+                binding = "<Super>s";
               };
             };
           }
