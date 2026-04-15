@@ -16,6 +16,7 @@ in
         pkgs.devenv
         inputs.claude-code-nix.packages.${system}.default
         pkgs.snowsql
+        pkgs.gh
       ];
     })
   ];

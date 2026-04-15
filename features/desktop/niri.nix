@@ -41,6 +41,8 @@
         wl-clipboard
         grim
         slurp
+        wl-screenrec
+        libnotify
         brightnessctl
         pwvucontrol
         vlc

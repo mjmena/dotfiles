@@ -71,6 +71,8 @@ binds {
 
     // System
     Print { screenshot; }
+    Mod+S { spawn-sh "grim -g \"$(slurp)\" - | wl-copy"; }
+    Mod+Shift+S { spawn-sh "if pkill -0 wl-screenrec; then pkill -INT wl-screenrec; notify-send 'Recording' 'Stopped and saved to ~/Videos'; else GEOM=$(slurp); if [ -n \"$GEOM\" ]; then notify-send 'Recording' 'Started...'; mkdir -p ~/Videos && wl-screenrec -g \"$GEOM\" -f ~/Videos/rec-$(date +%Y%m%d-%H%M%S).mp4; fi; fi"; }
     Mod+Shift+E { quit; }
     Mod+Shift+Slash { show-hotkey-overlay; }
 

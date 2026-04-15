@@ -32,6 +32,7 @@
         pkgs.spotify
         pkgs.obs-studio
         pkgs.mpv
+        pkgs.lutris
       ];
     })
   ];
