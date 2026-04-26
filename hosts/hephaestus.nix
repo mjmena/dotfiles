@@ -15,11 +15,12 @@
     ];
 
     extraNixosModules = [
-      ({ ... }: {
+      ({ pkgs, ... }: {
         networking.firewall.allowedTCPPorts = [
           3000
           8080
         ];
+        environment.systemPackages = [ pkgs.sox ];
       })
     ];
   };
