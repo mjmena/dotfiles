@@ -17,6 +17,7 @@ in
         inputs.claude-code-nix.packages.${system}.default
         pkgs.snowsql
         pkgs.gh
+        (pkgs.callPackage ../../pkgs/pipedream-cli {})
       ];
     })
   ];
